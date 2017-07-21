@@ -84,5 +84,3 @@ test:
 production:
   <<: *default
   database: scipen_production
-  username: scipen
-  password: <%= ENV['SCIPEN_DATABASE_PASSWORD'] %>
