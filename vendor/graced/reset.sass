@@ -1,0 +1,29 @@
+@import node_modules/normalize.css/normalize
+
+*
+  box-sizing: border-box
+
+html, body
+  margin: 0
+  padding: 0
+  font-family: $font-family
+  font-size: $font-size-base
+  line-height: $line-height-base
+  color: $text-color
+  background-color: $body-background
+a
+  text-decoration: none
+  color: $link-color
+  background: transparent
+  outline: none
+  cursor: pointer
+  transition: color .3s ease
+  &:hover
+    color: $link-hover-color
+  &[disabled]
+    color: $disabled-color
+    cursor: not-allowed
+    pointer-events: none
+
+code, kbd, pre, samp
+  font-family: $code-family

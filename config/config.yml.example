@@ -1,0 +1,21 @@
+defaults: &defaults
+  relative_root: '/'
+  secret:
+  db:
+    host: localhost
+    username:
+    password:
+  app:
+    title:
+    admin:
+    email: dotswing@gmail.com
+    upload: upload
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  slug: MyText
+  content: MyText
+  source: MyText
+  space_id: 1
+
+two:
+  title: MyText
+  slug: MyText
+  content: MyText
+  source: MyText
+  space_id: 1

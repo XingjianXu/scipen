@@ -1,0 +1,25 @@
+- content_for :toolbar
+  - if policy(:space).new?
+    = link_to categories_path, class: 'btn btn-sm'
+      => icon 'navicon'
+      | Categories
+    = link_to 'New Space', new_space_path, class: 'btn btn-primary btn-sm'
+
+.ui.grid
+  - for category in @categories
+    .sixteen.wide.column
+      h3.ui.horizontal.divider.header
+        => icon 'bars'
+        = category.name
+      .ui.cards
+        - for space in category.spaces
+          .card
+            .content
+              = link_to space.name, space_path(space), class: 'header'
+              .meta = space.created_at.to_s :db
+              .description = space.description
+            .extra.content
+              .ui.small.label class=visibility_html_class(space.visibility) = space.visibility.titleize
+              - if policy(space).edit?
+                .right.floated
+                  = link_to 'Edit', edit_space_path(space), class: 'btn btn-sm'

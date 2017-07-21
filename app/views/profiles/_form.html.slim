@@ -1,0 +1,38 @@
+= form_for @profile, url: current_user_profile_path,html: {class: 'ui form'} do |f|
+  - if @profile.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@profile.errors.count, "error")} prohibited this profile from being saved:"
+      ul
+        - @profile.errors.full_messages.each do |message|
+          li = message
+
+  .fields.equal.width
+    .field
+      = f.label :first_name
+      = f.text_field :first_name
+    .field
+      = f.label :last_name
+      = f.text_field :last_name
+    .field
+      = f.label :education
+      = f.select :education, %w[PH.D. M.S. B.S.], {}, {class: 'ui dropdown'}
+    .field
+      = f.label :position
+      = f.select :position, %w[Professor Associate\ Professor Lecturer Student], {}, {class: 'ui dropdown'}
+    .field
+      = f.label :phone
+      = f.text_field :phone
+
+  .field
+    = f.label :address
+    = f.text_area :address
+
+  .field
+    = f.label :publications
+    = f.text_area :publications
+
+  .field
+    = f.label :details
+    = f.text_area :details
+
+  = f.submit class: 'btn btn-primary'

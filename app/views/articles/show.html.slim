@@ -1,0 +1,13 @@
+- content_for :toolbar
+  - if policy(@article).edit?
+    = link_to edit_article_path(@article), class: 'btn btn-sm'
+      => icon 'pencil'
+      | Edit Article
+
+- content_for :article
+  h1.ui.header.article-title
+    = @article.title
+    .sub.header == @article.updated_at.to_s :db
+  article.article == @article.content
+
+= render template: '/spaces/show'

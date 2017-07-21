@@ -1,0 +1,23 @@
+- content_for :header
+  = javascript_pack_tag 'article_edit'
+  = stylesheet_pack_tag 'article_edit'
+
+= form_for @article, html: {class: 'ui form'} do |f|
+  = f.hidden_field :space_id
+
+  .ui.grid.divided
+    .twelve.wide.column
+      - unless f.object.homepage?
+        .fields.equal.width
+          .field
+            = f.label :title
+            = f.text_field :title
+          .field
+            = f.label :slug
+            = f.text_field :slug
+      .field
+        = f.text_area :source
+    .four.wide.column
+      = f.submit 'Save', class: 'btn btn-primary'
+      - if @article.id.present?
+        #assets-manager

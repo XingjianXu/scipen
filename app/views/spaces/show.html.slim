@@ -1,0 +1,15 @@
+- content_for :toolbar
+  - if policy(@space).edit?
+    = link_to 'Edit Space', edit_space_path(@space.id), class: 'btn btn-sm'
+  - if policy(@space).edit?
+    = link_to 'New Article', new_space_article_path(@space.id), class: 'btn btn-primary btn-sm'
+
+.ui.grid
+  .three.wide.column
+    ul.menu.menu-inline.menu-root
+      - for article in @space.articles.decorate
+        li.menu-item class=(active?(space_article_path(@space.id, article.id))? 'menu-item-selected' : '')
+          = link_to article.title, space_article_path(@space.id, article.id)
+  .eleven.wide.column
+    = content_for :article
+  .two.wide.column

@@ -1,0 +1,7 @@
+- content_for :toolbar
+  - if policy(@homepage).edit?
+    = link_to edit_article_path(@homepage), class: 'btn btn-primary btn-sm'
+      => icon 'pencil'
+      | Edit
+
+== @homepage.content

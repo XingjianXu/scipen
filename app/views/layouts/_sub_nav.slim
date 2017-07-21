@@ -1,0 +1,7 @@
+nav.sub-nav.clearfix
+  .ui.container
+    .pull-left.breadcrumb
+      - for breadcrumb in breadcrumbs
+        span = link_to compute_name(breadcrumb), compute_path(breadcrumb)
+    .pull-right.toolbar
+      = content_for :toolbar

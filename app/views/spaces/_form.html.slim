@@ -1,0 +1,17 @@
+= form_for @space, html: {class: 'ui form'} do |f|
+  .equal.width.fields
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :category_id
+      = f.select :category_id, Category.all.collect {|p| [p.name, p.id]}, {}, {class: 'ui dropdown'}
+    .field
+      = f.label :visibility
+      = f.select :visibility, Space.visibilities.collect {|k, v| [k.titleize, k]}, {}, {class: 'ui dropdown'}
+
+  .field
+    = f.label :description
+    = f.text_area :description
+
+  = f.submit class: 'btn btn-primary'

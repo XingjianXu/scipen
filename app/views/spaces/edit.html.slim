@@ -1,0 +1,5 @@
+- content_for :toolbar
+  = link_to 'Delete', space_path(@space), method: :delete, class: 'btn btn-danger btn-sm'
+  = link_to 'New', new_space_path, class: 'btn btn-primary btn-sm'
+== render 'form'
+

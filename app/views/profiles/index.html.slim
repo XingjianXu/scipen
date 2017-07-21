@@ -1,0 +1,12 @@
+.margined_content
+  .ui.items.divided
+    - for profile in @profiles
+      .item
+        img.ui.bordered.image src=gravatar_image_url(profile.user.email)
+        .content
+          h1.header
+            => link_to profile.label, profile_path(profile.id)
+          .meta
+            span = profile.education
+            span = profile.position
+          .description = profile.user.email

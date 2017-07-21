@@ -1,0 +1,78 @@
+.articles-show, .spaces-show
+  .column
+    padding-top: 0 !important
+
+#TOC
+  ul
+    list-style: none
+  & > ul
+    padding-left: 0
+    & ul
+      padding-left: 1em
+
+.article-title
+  margin: 2px 0 5px 0 !important
+
+.article
+  .figure
+    margin: 0.5em auto
+    padding: 0.5em
+    width: 90%
+    border: 1px solid rgba(0,0,0,.1)
+    border-radius: .3125em
+    img
+      width: 100%
+  table
+    width: 100%
+    background: #fff
+    margin: 1em 0
+    border: 1px solid rgba(34,36,38,.15)
+    box-shadow: none
+    border-radius: .28571429rem
+    text-align: left
+    color: rgba(0,0,0,.87)
+    border-collapse: separate
+    border-spacing: 0
+    td, th
+      border-left: 1px solid rgba(34,36,38,.1)
+      transition: background .1s ease,color .1s ease
+      &:first-child
+        border-left: none
+    tr td
+      padding: .78571429em .78571429em
+      border-top: 1px solid rgba(34,36,38,.1)
+    tbody
+      tr:hover
+        background: rgba(0,0,0,.05) !important
+        color: rgba(0,0,0,.95) !important
+      tr:first-child td
+        border-top: none
+      tr:nth-child(2n)
+        background-color: rgba(0,0,50,.02)
+    thead
+      tr:first-child
+        & > th:first-child, & > th:last-child
+          border-radius: .28571429rem 0 0 0
+      th
+        cursor: auto
+        background: #f9fafb
+        color: rgba(0,0,0,.87)
+        padding: .92857143em .78571429em
+        vertical-align: inherit
+        font-weight: 700
+        text-transform: none
+        border-bottom: 1px solid rgba(34,36,38,.1)
+
+#assets-manager
+  margin-top: 1em
+  padding-top: 1em
+  padding-left: 1em
+  left: -14px
+  position: relative
+  border-top: 1px solid rgba(34, 36, 38, 0.15)
+
+
+
+
+
+

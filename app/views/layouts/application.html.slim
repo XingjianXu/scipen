@@ -1,0 +1,45 @@
+doctype 5
+html lang='en'
+  head
+    meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+    title = page_title 
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all'
+    = Gon::Base.render_data
+    = javascript_include_tag 'jquery/dist/jquery.js'
+    = javascript_include_tag 'application'
+    = yield :header
+
+  body class=body_class
+    nav.header-nav
+      .ui.container.clearfix
+        .logo.nav-item = link_to Config.app.title, root_path
+        ul.nav-list
+          li
+            = link_to spaces_path, class: "nav-item #{active_class(spaces_path)}"
+              => icon 'cubes'
+              | Spaces
+          li
+            = link_to profiles_path, class: "nav-item #{active_class(profiles_path)}"
+              => icon 'users'
+              | People
+        .pull-right
+          .nav-item
+            - if user_signed_in?
+              .ui.simple.dropdown
+                = current_user.profile.label
+                i.dropdown.icon
+                .menu
+                  = link_to 'Profile', edit_current_user_profile_path, class: 'item'
+                  = link_to 'Security', edit_user_registration_path, class: 'item'
+                  .divider
+                  = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'item'
+            - else
+              = link_to new_user_session_path
+                => icon 'sign-in'
+                | Sign in
+
+    = render 'layouts/sub_nav'
+
+    .ui.container
+      = yield

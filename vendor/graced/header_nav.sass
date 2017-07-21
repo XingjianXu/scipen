@@ -1,0 +1,41 @@
+$header-nav-height: 42px
+$header-nav-active-color: #108ee9
+.header-nav
+  height: $header-nav-height
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05)
+  border-bottom: 1px solid #e7e7e7
+  .nav-item
+    border-bottom: 2px solid #FFF
+    padding: 10px 15px 5px 15px
+    font-size: $font-size-base + 2
+  .pull-right .nav-item:last-child
+    padding-right: 0
+  .logo
+    float: left
+    height: 16px
+    font-weight: bolder
+    padding-left: 0
+    margin-right: 20px
+    a
+      color: #2AB7C1
+  ul.nav-list
+    list-style: none
+    float: left
+    padding: 0
+    margin: 0
+    &.center
+      position: absolute
+      left: 40%
+    &.right
+      float: right
+    & > li
+      float: left
+      & > a
+        color: #333
+        transition: all .3s ease-in-out
+        display: block
+        &.active
+          color: $header-nav-active-color
+          border-color: $header-nav-active-color
+        &:hover
+          color: $header-nav-active-color
