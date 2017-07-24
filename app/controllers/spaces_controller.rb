@@ -31,7 +31,7 @@ class SpacesController < ApplicationController
 
   # GET /spaces/new
   def new
-    authorize :space, new
+    authorize :space, :new?
     add_breadcrumb 'New', :new_space_path
     @space = Space.new
   end
@@ -46,9 +46,8 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
-    authorize @space
     @space = Space.new(space_params)
-
+    authorize @space
     respond_to do |format|
       if @space.save
         format.html {redirect_to @space, notice: 'Space was successfully created.'}
