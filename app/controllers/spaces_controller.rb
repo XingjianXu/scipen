@@ -10,7 +10,8 @@ class SpacesController < ApplicationController
     t_spaces = Space.arel_table
     @categories = Category.includes(:spaces)
     if user_signed_in?
-      @categories = @categories.where('spaces.user_id': current_user.id)
+      @categories = @categories
+                        .where('spaces.user_id': current_user.id)
                         .or(@categories.where('spaces.visibility': [:trusted, :unrestricted]))
     else
       @categories = @categories.where('spaces.visibility': :unrestricted)
