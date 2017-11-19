@@ -18,7 +18,7 @@
 
 .byebug_history
 config/config.yml
-.idea
+.idea/*
 *.iml
 /public/packs
 /node_modules
