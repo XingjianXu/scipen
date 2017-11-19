@@ -24,6 +24,7 @@ class SpacesController < ApplicationController
   # GET /spaces/1.json
   def show
     authorize @space
+    add_breadcrumb @space.category.name, category_path(@space.category)
     add_breadcrumb @space.name, space_path(@space)
     if @space.articles.any?
       redirect_to @space.articles.first.decorate.show_path
@@ -49,8 +50,9 @@ class SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     authorize @space
+    @space.user = current_user
     respond_to do |format|
-      if @space.save
+      if @space.save!
         format.html {redirect_to @space, notice: 'Space was successfully created.'}
         format.json {render :show, status: :created, location: @space}
       else
