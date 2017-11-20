@@ -2,7 +2,7 @@ require 'fileutils'
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :assets, :asset]
-  before_action :set_space, only: [:new, :show, :edit, :update, :destroy, :assets, :asset]
+  before_action :set_space, only: [:new, :create, :show, :edit, :update, :destroy, :assets, :asset]
 
   # GET /articles
   # GET /articles.json
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save!
-        format.html {redirect_to @article, notice: 'Article was successfully created.'}
+        format.html {redirect_to @article.space.present? ? space_article_path(@article.space.id, @article.id) : @article, notice: 'Article was successfully created.'}
         format.json {render :show, status: :created, location: @article}
       else
         format.html {render :new}
@@ -117,7 +117,8 @@ class ArticlesController < ApplicationController
   end
 
   def set_space
-    @space = params[:space_id].present? ? Space.find_by_id(params[:space_id]) : @article.space
+    space_id = params[:space_id] || params[:article][:space_id]
+    @space = space_id.present? ? Space.find_by_id(space_id) : @article.space
     unless @article&.homepage?
       add_breadcrumb 'Spaces', :spaces_path
       add_breadcrumb @space.name, space_path(@space.id)
