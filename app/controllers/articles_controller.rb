@@ -15,6 +15,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     authorize @article
+    if @article.space
+      add_breadcrumb @article.space.category.name, category_path(@article.space.category)
+    end
   end
 
   # GET /articles/new
