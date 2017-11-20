@@ -2,7 +2,7 @@ require 'fileutils'
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :assets, :asset]
-  before_action :set_space, only: [:show, :edit, :update, :destroy, :assets, :asset]
+  before_action :set_space, only: [:new, :show, :edit, :update, :destroy, :assets, :asset]
 
   # GET /articles
   # GET /articles.json
@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    authorize :article
+    authorize @space, :edit?
     @article = Article.new_template
     @article.space = @space
   end
@@ -32,11 +32,11 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    authorize :article, :create?
+    authorize @space, :edit?
     @article = Article.new(article_params)
 
     respond_to do |format|
-      if @article.save
+      if @article.save!
         format.html {redirect_to @article, notice: 'Article was successfully created.'}
         format.json {render :show, status: :created, location: @article}
       else
