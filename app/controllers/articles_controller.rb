@@ -15,9 +15,6 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     authorize @article
-    if @article.space
-      add_breadcrumb @article.space.category.name, category_path(@article.space.category)
-    end
   end
 
   # GET /articles/new
@@ -124,6 +121,7 @@ class ArticlesController < ApplicationController
     @space = space_id.present? ? Space.find_by_id(space_id) : @article.space
     unless @article&.homepage?
       add_breadcrumb 'Spaces', :spaces_path
+      add_breadcrumb @space.category.name, category_path(@space.category)
       add_breadcrumb @space.name, space_path(@space.id)
     end
     case params[:action]
